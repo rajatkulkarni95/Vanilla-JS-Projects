@@ -38,6 +38,10 @@ body {
   margin-bottom: 30px;
 }
 
+#movie-title {
+  color: red;
+}
+
 .seating {
   display: flex;
   flex-direction: column;

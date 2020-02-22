@@ -1,6 +1,5 @@
 //Element Declarations
 const container = document.querySelector(".container");
-const movie = document.querySelector("#movie");
 const seats = document.querySelectorAll(".seat");
 const seat = document.querySelector(".seat");
 const count = document.querySelector("#count");
@@ -9,9 +8,13 @@ const bronzePrice = document.querySelector("#bronze-price");
 const silverPrice = document.querySelector("#silver-price");
 const goldPrice = document.querySelector("#gold-price");
 const paraText = document.querySelector(".text");
+const movieTitle = document.getElementById("movie-title");
 
-let baseTicketPrice = +movie.value;
+let baseTicketPrice = Math.floor(Math.random() * (13 - 8 + 1)) + 8;
 updateTicketPrice(baseTicketPrice);
+
+let title = sessionStorage.getItem("title");
+movieTitle.innerHTML = title;
 
 //Selected Seats
 function updateSelectedCount() {
@@ -32,18 +35,18 @@ function updateSelectedCount() {
     }
   });
 
-  count.innerText = selectedSeatCount;
-  total.innerText = ticketPrice;
+  count.innerHTML = selectedSeatCount;
+  total.innerHTML = ticketPrice;
 }
 
 function updateTicketPrice(baseTicketPrice) {
-  bronzePrice.innerText = `($${baseTicketPrice})`;
-  silverPrice.innerText = `($${Math.round(baseTicketPrice * 1.2)})`;
-  goldPrice.innerText = `($${Math.round(baseTicketPrice * 1.5)})`;
+  bronzePrice.innerHTML = `($${baseTicketPrice})`;
+  silverPrice.innerHTML = `($${Math.round(baseTicketPrice * 1.2)})`;
+  goldPrice.innerHTML = `($${Math.round(baseTicketPrice * 1.5)})`;
 }
 
 function updateTotal() {
-  paraText.innerText = "Selected Seats:";
+  paraText.innerHTML = "Selected Seats:";
   let list = paraText.createElement("ul");
 }
 
@@ -60,12 +63,12 @@ const colorCode = document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-//Change Option Event Listener
+/* //Change Option Event Listener
 movie.addEventListener("change", e => {
   baseTicketPrice = +e.target.value;
   updateTicketPrice(baseTicketPrice);
   updateSelectedCount();
-});
+}); */
 
 //Click Event Listener
 container.addEventListener("click", e => {
