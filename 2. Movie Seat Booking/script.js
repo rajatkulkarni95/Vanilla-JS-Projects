@@ -5,11 +5,15 @@ const seats = document.querySelectorAll(".seat");
 const seat = document.querySelector(".seat");
 const count = document.querySelector("#count");
 const total = document.querySelector("#total");
+const bronzePrice = document.querySelector("#bronze-price");
+const silverPrice = document.querySelector("#silver-price");
+const goldPrice = document.querySelector("#gold-price");
 const bronzeCount = document.querySelector("#bronze-count");
 const silverCount = document.querySelector("#silver-count");
 const goldCount = document.querySelector("#gold-count");
 
-const baseTicketPrice = +movie.value;
+let baseTicketPrice = +movie.value;
+updateTicketPrice(baseTicketPrice);
 
 //Selected Seats
 function updateSelectedCount() {
@@ -27,18 +31,24 @@ function updateSelectedCount() {
     ticketPrice += baseTicketPrice * 1.5;
   }
 
-  count.innerText = selectedSeatCount;
+  goldCount.innerText = selectedSeatCount;
   total.innerText = selectedSeatCount * ticketPrice;
+}
+
+function updateTicketPrice(baseTicketPrice) {
+  bronzePrice.innerText = `($${baseTicketPrice})`;
+  silverPrice.innerText = `($${Math.round(baseTicketPrice * 1.2)})`;
+  goldPrice.innerText = `($${Math.round(baseTicketPrice * 1.5)})`;
 }
 
 //Color Code Seats
 const colorCode = document.addEventListener("DOMContentLoaded", () => {
   seats.forEach(value => {
-    if (value.parentElement.matches(".row.bronze")) {
+    if (value.parentElement.id.match("bronze-row")) {
       value.className += " bronze";
-    } else if (value.parentElement.matches(".row.silver")) {
+    } else if (value.parentElement.id.match("silver-row")) {
       value.className += " silver";
-    } else if (value.parentElement.matches(".row.gold")) {
+    } else if (value.parentElement.id.match("gold-row")) {
       value.className += " gold";
     }
   });
@@ -47,6 +57,7 @@ const colorCode = document.addEventListener("DOMContentLoaded", () => {
 //Change Option Event Listener
 movie.addEventListener("change", e => {
   baseTicketPrice = +e.target.value;
+  updateTicketPrice(baseTicketPrice);
 });
 
 //Click Event Listener

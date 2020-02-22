@@ -44,7 +44,7 @@
       <div class="screen"></div>
 
       <div class="seating">
-        <div class="row bronze">
+        <div class="row" id="bronze-row">
           <div class="seat"></div>
           <div class="seat"></div>
           <div class="seat"></div>
@@ -54,7 +54,7 @@
           <div class="seat"></div>
           <div class="seat"></div>
         </div>
-        <div class="row bronze">
+        <div class="row" id="bronze-row">
           <div class="seat"></div>
           <div class="seat occupied"></div>
           <div class="seat occupied"></div>
@@ -65,7 +65,7 @@
           <div class="seat"></div>
         </div>
         <div class="silver-row">&nbsp;</div>
-        <div class="row silver">
+        <div class="row" id="silver-row">
           <div class="seat"></div>
           <div class="seat"></div>
           <div class="seat"></div>
@@ -75,7 +75,7 @@
           <div class="seat"></div>
           <div class="seat"></div>
         </div>
-        <div class="row silver">
+        <div class="row" id="silver-row">
           <div class="seat"></div>
           <div class="seat"></div>
           <div class="seat"></div>
@@ -85,7 +85,7 @@
           <div class="seat occupied"></div>
           <div class="seat occupied"></div>
         </div>
-        <div class="row silver">
+        <div class="row" id="silver-row">
           <div class="seat"></div>
           <div class="seat"></div>
           <div class="seat"></div>
@@ -96,7 +96,7 @@
           <div class="seat"></div>
         </div>
         <div class="gold-row">&nbsp;</div>
-        <div class="row gold">
+        <div class="row" id="gold-row">
           <div class="seat"></div>
           <div class="seat"></div>
           <div class="seat occupied"></div>
@@ -106,7 +106,7 @@
           <div class="seat"></div>
           <div class="seat"></div>
         </div>
-        <div class="row gold">
+        <div class="row" id="gold-row">
           <div class="seat"></div>
           <div class="seat"></div>
           <div class="seat occupied"></div>
@@ -118,12 +118,7 @@
         </div>
       </div>
     </div>
-    <p class="text">
-      Selected Seats: <span id="gold-count">&nbsp;</span>
-      <span id="silver-count">&nbsp;</span>
-      <span id="bronze-count">&nbsp;</span>
-      for $<span id="total">0</span>
-    </p>
+    <p class="text"></p>
 
     <script src="./script.js"></script>
   </body>
