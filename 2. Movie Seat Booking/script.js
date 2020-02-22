@@ -8,37 +8,43 @@ const total = document.querySelector("#total");
 const bronzePrice = document.querySelector("#bronze-price");
 const silverPrice = document.querySelector("#silver-price");
 const goldPrice = document.querySelector("#gold-price");
-const bronzeCount = document.querySelector("#bronze-count");
-const silverCount = document.querySelector("#silver-count");
-const goldCount = document.querySelector("#gold-count");
+const paraText = document.querySelector(".text");
 
 let baseTicketPrice = +movie.value;
 updateTicketPrice(baseTicketPrice);
 
 //Selected Seats
 function updateSelectedCount() {
-  const selectedSeats = document.querySelectorAll(".row .seat.selected");
   let ticketPrice = 0;
+  const selectedSeats = document.querySelectorAll(".row .seat.selected");
+
   const selectedSeatCount = selectedSeats.length;
 
   const seatIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat));
+  console.log(seatIndex);
+  seatIndex.forEach(value => {
+    if (value < 20) {
+      ticketPrice += baseTicketPrice;
+    } else if (value < 44) {
+      ticketPrice += Math.round(baseTicketPrice * 1.2, 2);
+    } else {
+      ticketPrice += Math.round(baseTicketPrice * 1.5, 2);
+    }
+  });
 
-  if (seatIndex < 20) {
-    ticketPrice += baseTicketPrice;
-  } else if (seatIndex < 44) {
-    ticketPrice += baseTicketPrice * 1.2;
-  } else {
-    ticketPrice += baseTicketPrice * 1.5;
-  }
-
-  goldCount.innerText = selectedSeatCount;
-  total.innerText = selectedSeatCount * ticketPrice;
+  count.innerText = selectedSeatCount;
+  total.innerText = ticketPrice;
 }
 
 function updateTicketPrice(baseTicketPrice) {
   bronzePrice.innerText = `($${baseTicketPrice})`;
   silverPrice.innerText = `($${Math.round(baseTicketPrice * 1.2)})`;
   goldPrice.innerText = `($${Math.round(baseTicketPrice * 1.5)})`;
+}
+
+function updateTotal() {
+  paraText.innerText = "Selected Seats:";
+  let list = paraText.createElement("ul");
 }
 
 //Color Code Seats
@@ -58,6 +64,7 @@ const colorCode = document.addEventListener("DOMContentLoaded", () => {
 movie.addEventListener("change", e => {
   baseTicketPrice = +e.target.value;
   updateTicketPrice(baseTicketPrice);
+  updateSelectedCount();
 });
 
 //Click Event Listener
